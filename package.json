@@ -1,0 +1,53 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "Personal blog",
+  "main": "server/run.js",
+  "scripts": {
+    "start": "node server/run",
+    "watch": "webpack --watch & nodemon -w server server/run",
+    "test": "tape tests/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/andreasmcdermott/blog.git"
+  },
+  "keywords": [
+    "blog",
+    "express"
+  ],
+  "author": "Andreas McDermott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreasmcdermott/blog/issues"
+  },
+  "homepage": "https://github.com/andreasmcdermott/blog#readme",
+  "dependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "6.16.0",
+    "babel-register": "6.16.3",
+    "express": "4.14.0",
+    "nconf": "0.8.4",
+    "nunjucks": "2.5.2"
+  },
+  "devDependencies": {
+    "css-loader": "0.25.0",
+    "extract-text-webpack-plugin": "1.0.1",
+    "nodemon": "1.11.0",
+    "style-loader": "0.13.1",
+    "stylus": "0.54.5",
+    "stylus-loader": "2.3.1",
+    "tape": "4.6.2",
+    "webpack": "1.13.2",
+    "xo": "0.17.0"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs"
+    ]
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2,
+    "semicolon": false
+  }
+}
