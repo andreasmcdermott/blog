@@ -2,5 +2,8 @@
   "server": {
     "port": 8080
   },
+  "dir": {
+    "posts": "../posts"
+  },
   "dev": true
 }

@@ -2,10 +2,10 @@ const join = require('path').join
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  entry: './static/scripts/main.js',
+  entry: './client/scripts/main.js',
   output: {
-    path: join(__dirname, 'static/build'),
-    filename: 'client.js'
+    path: join(__dirname, 'static/'),
+    filename: 'scripts/main.js'
   },
   module: {
     loaders: [{
@@ -14,6 +14,6 @@ module.exports = {
     }]
   },
   plugins: [
-      new ExtractTextPlugin("styles.css")
+      new ExtractTextPlugin("styles/main.css")
   ]
 }

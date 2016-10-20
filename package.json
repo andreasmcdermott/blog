@@ -26,8 +26,12 @@
     "babel-plugin-transform-es2015-modules-commonjs": "6.16.0",
     "babel-register": "6.16.3",
     "express": "4.14.0",
+    "marked": "^0.3.6",
+    "moment": "^2.15.1",
     "nconf": "0.8.4",
-    "nunjucks": "2.5.2"
+    "nunjucks": "2.5.2",
+    "sane": "^1.4.1",
+    "yaml-front-matter": "^3.4.0"
   },
   "devDependencies": {
     "css-loader": "0.25.0",

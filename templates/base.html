@@ -3,10 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>andreas mcdermott</title>
-    <link rel="stylesheet" href="build/styles.css" type="text/css" />
+    <meta name="description" content="{{metaDescription}}" />
+    <title>{{title | siteTitle}}</title>
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   </head>
   <body>
-    {% block content %}{% endblock %}
+    <header>
+      <h1>Andreas McDermott</h1>
+      <nav>
+        <ul role="presentation">
+          <li><a href="/posts">Posts</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main role="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+
+    </footer>
   </body>
 </html>  
