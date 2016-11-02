@@ -22,10 +22,15 @@ function cachePosts(folder) {
   const _allPosts = []
   const files = fs.readdirSync(folder)
   files.forEach(file => {
+    const fileInfo = path.parse(file)
+    if (fileInfo.ext !== '.md') {
+      return;
+    }
+
     const content = fs.readFileSync(path.join(folder, file))
     const post = yaml.loadFront(content, 'content')
 
-    const m = post.content.match(/^\s*# ([^\n]*)\n\n/m)
+    const m = post.content.match(/^\s*## ([^\n]*)\n\n/m)
     if (m) {
       post.title = m[1]
       post.content = post.content.slice(m[0].length)
@@ -65,6 +70,10 @@ export function load(folder, dev = false) {
     if (dev) console.log('Reloading posts...')
     cachePosts(folder)
   })
+}
+
+export function count() {
+  return allPosts.length;
 }
 
 export function get() {

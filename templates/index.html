@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <strong>Hello</strong>
+  <section class="page">
+    <h2 class="page__title">Recent Posts</h2>
+
+    <ul role="presentation" class="u-nolist">
+    {% for post in posts %}
+      <li role="presentation">
+        <section>
+          <span>{{post.date | displayDate}}</span>
+          <h3>{{post.title}}</h3>
+          <p>{{post.abstract}}</p>
+          <p><a href="/post/{{post.slug}}">Read</a></p>
+        </section>
+      </li>
+    {% endfor %}
+    </ul>
+  </section>
 {% endblock %}

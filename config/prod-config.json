@@ -3,7 +3,9 @@
     "port": 8080
   },
   "dir": {
-    "posts": "../posts"
+    "posts": "../posts",
+    "games": "../games",
+    "projects": "../projects"
   },
   "dev": false
 }

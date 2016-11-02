@@ -8,22 +8,23 @@
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   </head>
   <body>
-    <header>
-      <h1>Andreas McDermott</h1>
-      <nav>
-        <ul role="presentation">
-          <li><a href="/posts">Posts</a></li>
-          <li><a href="/about">About</a></li>
+    <header role="banner" class="site__header">
+      <h1 class="site__title"><a href="/">Andreas McDermott</a></h1>
+      
+      {% include "social_nav.html" %}
+
+      <nav role="navigation" class="site__nav" aria-label="Site navigation">
+        <ul role="presentation" class="u-nolist u-nolist--h">
+          <li role="presentation"><a href="/posts" class="site__nav-item">Posts</a></li>
+          <li role="presentation"><a href="/about" class="site__nav-item">About</a></li>
         </ul>
       </nav>
     </header>
 
-    <main role="main">
+    <main role="main" class="site__content">
       {% block content %}{% endblock %}
     </main>
 
-    <footer>
-
-    </footer>
+    <script src="https://use.fontawesome.com/9a8c6d3637.js"></script>
   </body>
 </html>  
