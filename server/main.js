@@ -8,6 +8,7 @@ import * as posts from './posts'
 
 nconf.env().argv()
 const env = nconf.get('NODE_ENV') || 'development'
+console.log(`Starting with env ${env}.`)
 nconf.file({
   file: path.join(__dirname, `../config/config-${env}.json`)
 })
