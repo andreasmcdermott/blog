@@ -9,10 +9,16 @@
   </head>
   <body>
     <header role="banner" class="site__header">
-      <h1 class="site__title"><a href="/">Andreas McDermott</a></h1>
+      <div>
+        <h1 class="site__title">
+          <a class="site__home-link" href="/">Andreas McDermott</a>
+        </h1>
+        <div class="site__info">
+          <span>SDE @ Amazon</span>
+          {% include "social_nav.html" %}
+        </div>
+      </div>
       
-      {% include "social_nav.html" %}
-
       <nav role="navigation" class="site__nav" aria-label="Site navigation">
         <ul role="presentation" class="u-nolist u-nolist--h">
           <li role="presentation"><a href="/posts" class="site__nav-item">Posts</a></li>

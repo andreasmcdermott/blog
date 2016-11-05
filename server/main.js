@@ -4,15 +4,13 @@ import nconf from 'nconf'
 import nunjucks from 'nunjucks'
 import moment from 'moment'
 import marked from 'marked'
-
 import * as posts from './posts'
 
-nconf.env()
-     .argv()
-     .file({
-       file: path.join(__dirname, '../config/config.json')
-     })
-
+nconf.env().argv()
+const env = nconf.get('NODE_ENV') || 'development'
+nconf.file({
+  file: path.join(__dirname, `../config/config-${env}.json`)
+})
 const app = express()
 
 app.use(express.static('static'))
@@ -25,7 +23,7 @@ const nunjucksEnv = nunjucks.configure('templates', {
   watch: nconf.get('dev')
 })
 
-nunjucksEnv.addFilter('displayDate', value => moment.utc(value).format('MMMM DD, YYYY'))
+nunjucksEnv.addFilter('displayDate', value => moment.utc(value).fromNow())
 nunjucksEnv.addFilter('md', value => new nunjucks.runtime.SafeString(marked(value)))
 nunjucksEnv.addFilter('siteTitle', value => value ? `${value} | andreas mcdermott` : 'andreas mcdermott')
 
@@ -47,7 +45,29 @@ app.get('/posts', (req, res) => {
 app.get('/post/:slug', (req, res) => {
   const post = posts.get(req.params.slug)
   if (post) {
-    res.render('post.html', getContext('Unnamed post', post, {metaDescription: post.abstract}))
+    res.render('post.html', getContext('Unnamed post', post, { metaDescription: post.abstract }))
+  } else {
+    res.render('404.html')
+  }
+})
+
+app.get('/category/:category', (req, res) => {
+  const matchingPosts = posts.query({ category: req.params.category })
+  if (matchingPosts) {
+    res.render('posts.html', getContext(`Posts in category: ${req.params.category}`, { 
+      posts: matchingPosts
+    }))
+  } else {
+    res.render('404.html')
+  }
+})
+
+app.get('/tag/:tag', (req, res) => {
+  const matchingPosts = posts.query({ tags: req.params.tag })
+  if (matchingPosts) {
+    res.render('posts.html', getContext(`Posts with tag: ${req.params.tag}`, { 
+      posts: matchingPosts 
+    }))
   } else {
     res.render('404.html')
   }

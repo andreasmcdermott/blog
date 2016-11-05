@@ -30,10 +30,11 @@ function cachePosts(folder) {
     const content = fs.readFileSync(path.join(folder, file))
     const post = yaml.loadFront(content, 'content')
 
-    const m = post.content.match(/^\s*## ([^\n]*)\n\n/m)
-    if (m) {
-      post.title = m[1]
-      post.content = post.content.slice(m[0].length)
+    const matchForTitle = post.content.match(/^\s*# ([^\n]*)\n\n/m)
+    if (matchForTitle) {
+      post.title = matchForTitle[1]
+      post.content = post.content.slice(matchForTitle[0].length)
+      post.content = post.content.replace(/##/g, '###')
     }
 
     if (post.date instanceof Date) {
@@ -85,4 +86,16 @@ export function get() {
     const limit = args[0]
     return allPosts.slice(0, limit || allPosts.length)
   }
+}
+
+export function query(filter) {
+  const key = Object.keys(filter).pop()
+  return allPosts.filter(post => {
+    const val = post[key]
+    if (typeof val === 'string') {
+      return val === filter[key]
+    } else {
+      return val.includes(filter[key])
+    }
+  })
 }

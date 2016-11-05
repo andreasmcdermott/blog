@@ -1,19 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <article>
-    <header>
-      <h2>{{title}}</h2>
-      <span>{{date | displayDate}}</span>
-      <span>{{category}}</span>
+  <article class="post">
+    <header class="post__header">
+      <span class="post__date">{{date | displayDate}}</span>
+      <h2 class="post__title">{{title}}</h2>
     </header>
 
-    <section>
+    <section class="post__content">
       {{content | md}}
     </section>
     
-    <footer>
-      <span>Tags: {{tags | join(', ')}}</span>
+    <footer class="post__footer">
+      <p class="u-no-space">
+        <strong>Category:</strong> 
+        <a href="/category/{{category}}" class="post__category">{{category}}</a>
+      </p>
+      <p class="post__tags u-no-space">
+        <strong>Tags:</strong> 
+        {% for tag in tags %}
+          <a href="/tag/{{tag}}" class="post__tag">{{tag}}</a>{{ "," if loop.last == false }}
+        {% endfor %}
+      </p>
     </footer>
   </article>
 {% endblock %}
