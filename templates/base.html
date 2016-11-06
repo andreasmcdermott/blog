@@ -11,7 +11,7 @@
     <header role="banner" class="site__header">
       <div>
         <h1 class="site__title">
-          <a class="site__home-link" href="/">Andreas McDermott</a>
+          <a class="site__home-link" href="/" title="Andreas McDermott">Andreas McDermott</a>
         </h1>
         <div class="site__info">
           <span>SDE @ Amazon</span>
@@ -21,16 +21,28 @@
       
       <nav role="navigation" class="site__nav" aria-label="Site navigation">
         <ul role="presentation" class="u-nolist u-nolist--h">
-          <li role="presentation"><a href="/posts" class="site__nav-item">Posts</a></li>
-          <li role="presentation"><a href="/about" class="site__nav-item">About</a></li>
+          <li role="presentation"><a href="/posts" class="site__nav-item" title="All Posts">Posts</a></li>
+          <li role="presentation"><a href="/about" class="site__nav-item" title="About">About</a></li>
         </ul>
       </nav>
     </header>
+
+    <section class="alert" role="alert">
+      <ul id="alert-list" role="u-nolist" role="presentation"></ul>
+    </section>
 
     <main role="main" class="site__content">
       {% block content %}{% endblock %}
     </main>
 
     <script src="https://use.fontawesome.com/9a8c6d3637.js"></script>
+    <script id="alert-message-template" type="text/html">
+      <div class="alert__message">
+        <i class="fa fa-warning" aria-hidden="true"></i>
+        <span>%%message%%</span>
+        <button aria-label="Dismiss"><i class="fa fa-times" aria-hidden="true"></i></button>
+      </div>
+    </script>
+    <script src="/scripts/main.js"></script>
   </body>
 </html>  

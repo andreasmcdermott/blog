@@ -1,12 +1,22 @@
 <ul role="presentation" class="u-nolist">
-{% for post in posts %}
-  <li role="presentation">
-    <section>
-      <span>{{post.date | displayDate}}</span>
-      <h3>{{post.title}}</h3>
-      <p>{{post.abstract}}</p>
-      <p><a href="/post/{{post.slug}}">Read</a></p>
-    </section>
-  </li>
-{% endfor %}
+  {% for post in posts %}
+    <li role="presentation" class="post-item__wrapper">
+      <section class="post-item">
+        <span class="post-item__date">{{post.date | displayDate}}</span>
+        <h3 class="post-item__title">{{post.title}}</h3>
+        <p class="post-item__abstract">{{post.abstract}}</p>
+        <a href="/post/{{post.slug}}" 
+           class="post-item__read-article"
+           title="{{post.title}}"
+        >Read full post</a>
+      </section>
+    </li>
+  {% else %}
+    <li role="presentation" class="post-item__wrapper">
+      <section class="post-item">
+        <h3 class="post-item__title">That's weird..</h3>
+        <p>Couldn't find any posts.</p>
+      </section>
+    </li>
+  {% endfor %}
 </ul>

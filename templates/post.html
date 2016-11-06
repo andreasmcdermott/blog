@@ -14,12 +14,18 @@
     <footer class="post__footer">
       <p class="u-no-space">
         <strong>Category:</strong> 
-        <a href="/category/{{category}}" class="post__category">{{category}}</a>
+        <a href="/category/{{category}}" 
+           class="post__category"
+           title="Posts in category: {{category}}"
+        >{{category}}</a>
       </p>
       <p class="post__tags u-no-space">
         <strong>Tags:</strong> 
         {% for tag in tags %}
-          <a href="/tag/{{tag}}" class="post__tag">{{tag}}</a>{{ "," if loop.last == false }}
+          <a href="/tag/{{tag}}" 
+             class="post__tag" 
+             title="Posts with tag: {{tag}}"
+          >{{tag}}</a>{{ "," if loop.last == false }}
         {% endfor %}
       </p>
     </footer>

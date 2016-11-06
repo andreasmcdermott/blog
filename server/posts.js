@@ -24,7 +24,7 @@ function cachePosts(folder) {
   files.forEach(file => {
     const fileInfo = path.parse(file)
     if (fileInfo.ext !== '.md') {
-      return;
+      return
     }
 
     const content = fs.readFileSync(path.join(folder, file))
@@ -74,7 +74,7 @@ export function load(folder, dev = false) {
 }
 
 export function count() {
-  return allPosts.length;
+  return allPosts.length
 }
 
 export function get() {
@@ -92,10 +92,8 @@ export function query(filter) {
   const key = Object.keys(filter).pop()
   return allPosts.filter(post => {
     const val = post[key]
-    if (typeof val === 'string') {
-      return val === filter[key]
-    } else {
-      return val.includes(filter[key])
-    }
+    if (typeof val === 'string') return val === filter[key]
+    else if (Array.isArray(val)) return val.includes(filter[key])
+    return null
   })
 }

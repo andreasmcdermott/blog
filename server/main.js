@@ -12,8 +12,8 @@ console.log(`Starting with env ${env}.`)
 nconf.file({
   file: path.join(__dirname, `../config/config-${env}.json`)
 })
-const app = express()
 
+const app = express()
 app.use(express.static('static'))
 
 posts.load(path.join(__dirname, nconf.get('dir:posts')), nconf.get('dev'))
@@ -26,11 +26,11 @@ const nunjucksEnv = nunjucks.configure('templates', {
 
 nunjucksEnv.addFilter('displayDate', value => moment.utc(value).fromNow())
 nunjucksEnv.addFilter('md', value => new nunjucks.runtime.SafeString(marked(value)))
-nunjucksEnv.addFilter('siteTitle', value => value ? `${value} | andreas mcdermott` : 'andreas mcdermott')
+nunjucksEnv.addFilter('siteTitle', value => value ? `${value} | Andreas McDermott` : 'Andreas McDermott')
 
-function getContext (title) {
-  var overrides = [...arguments].slice(1) 
-  return Object.assign.apply(null, [{ title, postCount: posts.count() }].concat(overrides))
+function getContext(title) {
+  const overrides = [...arguments].slice(1)
+  return Object.assign.apply(null, [{title, postCount: posts.count()}].concat(overrides))
 }
 
 app.get('/about', (req, res) => {
@@ -39,23 +39,23 @@ app.get('/about', (req, res) => {
 
 app.get('/posts', (req, res) => {
   res.render('posts.html', getContext('All Posts', {
-    posts: posts.get(),
+    posts: posts.get()
   }))
 })
 
 app.get('/post/:slug', (req, res) => {
   const post = posts.get(req.params.slug)
   if (post) {
-    res.render('post.html', getContext('Unnamed post', post, { metaDescription: post.abstract }))
+    res.render('post.html', getContext('Unnamed post', post, {metaDescription: post.abstract}))
   } else {
     res.render('404.html')
   }
 })
 
 app.get('/category/:category', (req, res) => {
-  const matchingPosts = posts.query({ category: req.params.category })
+  const matchingPosts = posts.query({category: req.params.category})
   if (matchingPosts) {
-    res.render('posts.html', getContext(`Posts in category: ${req.params.category}`, { 
+    res.render('posts.html', getContext(`Posts in category: ${req.params.category}`, {
       posts: matchingPosts
     }))
   } else {
@@ -64,10 +64,10 @@ app.get('/category/:category', (req, res) => {
 })
 
 app.get('/tag/:tag', (req, res) => {
-  const matchingPosts = posts.query({ tags: req.params.tag })
+  const matchingPosts = posts.query({tags: req.params.tag})
   if (matchingPosts) {
-    res.render('posts.html', getContext(`Posts with tag: ${req.params.tag}`, { 
-      posts: matchingPosts 
+    res.render('posts.html', getContext(`Posts with tag: ${req.params.tag}`, {
+      posts: matchingPosts
     }))
   } else {
     res.render('404.html')
@@ -81,5 +81,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(nconf.get('server:port'), () => {
-  console.log(`Server listenering on port ${nconf.get('server:port')}!`)
+  console.log(`Server running: http://localhost:${nconf.get('server:port')}`)
 })

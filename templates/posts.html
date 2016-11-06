@@ -4,24 +4,6 @@
   <section class="page">
     <h2 class="page__title">{{title}}</h2>
 
-    <ul role="presentation" class="u-nolist">
-    {% for post in posts %}
-      <li role="presentation" class="post-item__wrapper">
-        <section class="post-item">
-          <span class="post-item__date">{{post.date | displayDate}}</span>
-          <h3 class="post-item__title">{{post.title}}</h3>
-          <p class="post-item__abstract">{{post.abstract}}</p>
-          <a href="/post/{{post.slug}}" class="post-item__read-article">Read full post</a>
-        </section>
-      </li>
-    {% else %}
-      <li role="presentation" class="post-item__wrapper">
-        <section class="post-item">
-          <h3 class="post-item__title">That's weird..</h3>
-          <p>Couldn't find any posts.</p>
-        </section>
-      </li>
-    {% endfor %}
-    </ul>
+    {% include "posts_list.html" %}
   </section>
 {% endblock %}
