@@ -7,12 +7,12 @@ tags:
  - components
 abstract: How to create an accessible tab component with React.
 ---
-# An accessible tab component with React
+# Creating an accessible tab component with React
 
 I'm probably the last person to realize this; but React is really great! The last few weeks I've been playing with it, 
 and so far it's been a really enjoyable experience.
 
-I've been wanting to use it for something, and since another of my favorite topics is accessibility, I thought I should try to create a library of accessible components.
+I've been wanting to use it for something, and since another of my favorite topics is accessibility, I thought I should try to create a few different accessible components.
 It will mainly serve as a way for me to increase my React knowledge, but will hopefully be useful to others in the end.
 
 The first component I decided to create is a tab list. I will include working examples from CodePen so that you can try out the difference between an accessible tab component and an inaccessible component. If you are using a Mac, I recommend you try it with [VoiceOver](http://www.apple.com/voiceover/info/guide/) as well.
@@ -34,7 +34,7 @@ The first example (see below) is probably where a lot of people would stop. You 
 
 ## Adding the correct roles
 
-If you try the next example you'll notice that the screen reader now correctly reads "tab 1 of 3" when on the first tab. This is achived by assigned the elements their correct roles. 
+If you try the next example you'll notice that the screen reader now correctly reads "tab 1 of 3" when on the first tab. This is achieved by assigned the elements their correct roles. 
 
 There are a lot of roles. Some roles have dedicated elements (like `<button>` automatically has `role="button"`). Other roles have no corresponding elements (like tabs). The roles we'll use are "tab", "tablist" and "tabpanel".
 
@@ -44,7 +44,7 @@ After applying the correct roles, our HTML structure is:
 
 <script src="https://gist.github.com/andreasmcdermott/7854fbd023f498e6dd6dbc93513e5aa8.js"></script>
 
-The result is immediatley a lot better and more accessible than the initial version. But we are still missing some necessary aria attributes and proper keyboard navigation.
+The result is immediately a lot better and more accessible than the initial version. But we are still missing some necessary aria attributes and proper keyboard navigation.
 
 <p data-height="480" data-theme-id="0" data-slug-hash="BQBBMQ" data-default-tab="result" data-user="andreasmcdermott" data-embed-version="2" data-pen-title="Accessible tab component in React - step 1" class="codepen">See the Pen <a href="http://codepen.io/andreasmcdermott/pen/BQBBMQ/">Accessible tab component in React - step 1</a> by Andreas McDermott (<a href="http://codepen.io/andreasmcdermott">@andreasmcdermott</a>) on <a href="http://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
@@ -53,7 +53,7 @@ The result is immediatley a lot better and more accessible than the initial vers
 
 There are a lot of different aria attributes. Some can be used on any element, others are intended for elements with specific roles. We will use `aria-hidden` and `aria-labelledby` which are general attributes (can be used anywhere). We will also use `aria-selected` and `aria-controls` which are used for interactable elements.
 
-`Aria-hidden="true"` is the ecquivalent of `display: none` for the screen-reader. We are already hiding the inactive tabpanels using `display: none` and screen-readers should consider these elements hidden as well, but I've had issues with certain screen-readers ignoring this in the past. To avoid that I'm adding `aria-hidden="true"` as well to the inactive tabpanels. 
+`Aria-hidden="true"` is the equivalent of `display: none` for the screen-reader. We are already hiding the inactive tabpanels using `display: none` and screen-readers should consider these elements hidden as well, but I've had issues with certain screen-readers ignoring this in the past. To avoid that I'm adding `aria-hidden="true"` as well to the inactive tabpanels. 
 
 When the screen-reader highlights the tabpanel, we want it to include the tab's title. That is what `aria-labelledby` is for. The value of the attribute should be the id of the tab. `Aria-label` can be used for the same purpose. The difference is that it takes the label text instead (but because we don't want to duplicate the tab title, `aria-labelledby` is a better choice here).
 
