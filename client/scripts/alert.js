@@ -18,9 +18,9 @@ export default class Alert {
   }
 
   static push(message) {
-    if (!instance) {
-      instance = new Alert()
-    }
-    instance.add(message)
+    // if (!instance) {
+    //   instance = new Alert()
+    // }
+    // instance.add(message)
   }
 }
