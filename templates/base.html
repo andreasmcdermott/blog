@@ -27,9 +27,11 @@
       </nav>
     </header>
 
+    {% if isDev %}
     <section class="alert" role="alert">
       <ul id="alert-list" role="u-nolist" role="presentation"></ul>
     </section>
+    {% endif %}
 
     <main role="main" class="site__content">
       {% block content %}{% endblock %}

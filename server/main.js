@@ -24,6 +24,7 @@ const nunjucksEnv = nunjucks.configure('templates', {
   watch: nconf.get('dev')
 })
 
+nunjucksEnv.addGlobal('isDev', nconf.get('dev'))
 nunjucksEnv.addFilter('displayDate', value => moment.utc(value).fromNow())
 nunjucksEnv.addFilter('md', value => new nunjucks.runtime.SafeString(marked(value)))
 nunjucksEnv.addFilter('siteTitle', value => value ? `${value} | Andreas McDermott` : 'Andreas McDermott')
